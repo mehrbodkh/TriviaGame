@@ -9,7 +9,7 @@ class AddUserAnswerUseCaseImpl @Inject constructor(
     private val gameSessionRepository: GameSessionRepository
 ) : AddUserAnswerUseCase {
 
-    override fun addAnswer(question: Question, answer: Answer) {
+    override fun addAnswer(question: Question, answer: Answer?) {
         gameSessionRepository.addAnsweredQuestion(question, answer)
     }
 }

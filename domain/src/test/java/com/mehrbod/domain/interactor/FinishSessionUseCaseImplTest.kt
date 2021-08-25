@@ -1,12 +1,11 @@
 package com.mehrbod.domain.interactor
 
+import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.repository.GameSessionRepository
-import io.mockk.MockKAnnotations
-import io.mockk.every
+import io.mockk.*
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
-import io.mockk.unmockkAll
-import io.mockk.verify
 import org.junit.After
 import org.junit.Before
 
@@ -27,12 +26,57 @@ class FinishSessionUseCaseImplTest {
     }
 
     @Test
-    fun `test finish session`() {
+    fun `test get empty summery`() {
+        every { gameSessionRepository.getAllAnsweredQuestions() } returns listOf()
         every { gameSessionRepository.clear() } returns Unit
 
-        finishSessionUseCase.finishSession()
+        val result = finishSessionUseCase.finish()
 
+        verify { gameSessionRepository.getAllAnsweredQuestions() }
         verify { gameSessionRepository.clear() }
+        assertEquals(0, result.totalQuestions)
+        assertEquals(0, result.numberOfCorrectAnswers)
+    }
+
+    @Test
+    fun `test get full summery - result`() {
+        val question = mockk<Question>(relaxed = true)
+        val question2 = mockk<Question>(relaxed = true)
+        val answer = mockk<Answer>()
+        val answer2 = mockk<Answer>()
+        every { answer getProperty "isCorrect" } returns true
+        every { answer2 getProperty "isCorrect" } returns false
+        every { question getProperty "choices" } returns listOf(answer)
+        every { question2 getProperty "choices" } returns listOf(answer2)
+        every { gameSessionRepository.getAllAnsweredQuestions() } returns listOf(
+            question to answer,
+            question2 to answer2
+        )
+        every { gameSessionRepository.clear() } returns Unit
+
+        val result = finishSessionUseCase.finish()
+
+        verify { gameSessionRepository.getAllAnsweredQuestions() }
+        verify { gameSessionRepository.clear() }
+        assertEquals(2, result.totalQuestions)
+        assertEquals(1, result.numberOfCorrectAnswers)
+    }
+
+    @Test
+    fun `test get summery`() {
+        val question = mockk<Question>(relaxed = true)
+        val answer = mockk<Answer>()
+        every { answer getProperty "isCorrect" } returns true
+        every { question getProperty "choices" } returns listOf(answer)
+        every { gameSessionRepository.getAllAnsweredQuestions() } returns listOf(question to answer)
+        every { gameSessionRepository.clear() } returns Unit
+
+        val result = finishSessionUseCase.finish()
+
+        verify { gameSessionRepository.getAllAnsweredQuestions() }
+        verify { gameSessionRepository.clear() }
+        assertEquals(1, result.totalQuestions)
+        assertEquals(1, result.numberOfCorrectAnswers)
     }
 
     @After

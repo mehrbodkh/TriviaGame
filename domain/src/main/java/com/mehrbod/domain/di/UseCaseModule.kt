@@ -27,18 +27,13 @@ abstract class UseCaseModule {
 
     @Binds
     abstract fun bindGetSummeryUseCase(
-        getSummeryUseCaseImpl: GetSummeryUseCaseImpl
-    ): GetSummeryUseCase
+        getSummeryUseCaseImpl: FinishSessionUseCaseImpl
+    ): FinishSessionUseCase
 
     @Binds
     abstract fun bindRemoveWrongAnswersUseCase(
         removeWrongAnswersUseCaseImpl: RemoveWrongAnswersUseCaseImpl
     ): RemoveWrongAnswersUseCase
-
-    @Binds
-    abstract fun bindFinishSessionUseCase(
-        finishSessionUseCaseImpl: FinishSessionUseCaseImpl
-    ): FinishSessionUseCase
 
     @Binds
     abstract fun bindAddExtraTimeUseCase(
