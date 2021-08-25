@@ -34,4 +34,9 @@ abstract class UseCaseModule {
     abstract fun bindRemoveWrongAnswersUseCase(
         removeWrongAnswersUseCaseImpl: RemoveWrongAnswersUseCaseImpl
     ): RemoveWrongAnswersUseCase
+
+    @Binds
+    abstract fun bindFinishSessionUseCase(
+        finishSessionUseCaseImpl: FinishSessionUseCaseImpl
+    ): FinishSessionUseCase
 }
