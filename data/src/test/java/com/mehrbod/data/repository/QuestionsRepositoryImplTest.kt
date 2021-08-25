@@ -3,7 +3,6 @@ package com.mehrbod.data.repository
 import com.mehrbod.data.datasource.QuestionsLocalDataSource
 import com.mehrbod.data.datasource.QuestionsRemoteDataSource
 import com.mehrbod.data.util.couldNotFetchQuestions
-import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.repository.QuestionsRepository
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
@@ -11,9 +10,8 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
