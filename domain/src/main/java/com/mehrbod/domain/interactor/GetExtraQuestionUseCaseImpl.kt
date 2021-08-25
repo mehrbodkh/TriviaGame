@@ -12,7 +12,8 @@ class GetExtraQuestionUseCaseImpl @Inject constructor(
 ): GetExtraQuestionUseCase {
 
     override suspend fun getExtraQuestion(questions: List<Question>): Result<Question> {
-        return if (gameSessionRepository.isUserUsedExtraQuestion()) {
+        return if (!gameSessionRepository.isUserUsedExtraQuestion()) {
+            gameSessionRepository.setUserUsedExtraQuestion(true)
             questionsRepository.getAnotherQuestion(questions)
         } else {
             Result.failure(userUsedExtraQuestionException)
