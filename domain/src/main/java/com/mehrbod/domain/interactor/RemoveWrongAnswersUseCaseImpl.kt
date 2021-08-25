@@ -14,10 +14,10 @@ class RemoveWrongAnswersUseCaseImpl @Inject constructor(
         return if (!gameSessionRepository.isUserUsedRemoveWrongAnswers()) {
             gameSessionRepository.setUserUsedRemoveWrongAnswers(true)
 
-            val removableChoices = question.choices.filter { !it.isCorrect }.toMutableList()
-            removableChoices.add(question.choices.filter { !it.isCorrect }.random())
+            val newChoices = question.choices.filter { it.isCorrect }.toMutableList()
+            newChoices.add(question.choices.filter { !it.isCorrect }.random())
 
-            Result.success(question.copy(removableChoices))
+            Result.success(question.copy(newChoices))
         } else {
             Result.failure(userUsedRemoveWrongAnswersException)
         }

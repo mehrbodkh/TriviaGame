@@ -4,7 +4,8 @@ data class TextQuestion(
     val questionText: String,
     override var choices: List<Answer>
 ): Question() {
-    override fun copy(choices: List<Answer>): Question {
-        return TextQuestion(questionText, choices)
+
+    override fun copy(choices: List<Answer>): TextQuestion {
+        return  this.copy(questionText = questionText, choices = choices)
     }
 }

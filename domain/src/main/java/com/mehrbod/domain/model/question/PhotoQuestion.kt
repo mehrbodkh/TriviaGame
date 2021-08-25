@@ -5,6 +5,6 @@ data class PhotoQuestion(
     override val choices: List<Answer>
 ): Question() {
     override fun copy(choices: List<Answer>): Question {
-        return PhotoQuestion(this.photoUrl, choices)
+        return this.copy(photoUrl = photoUrl, choices = choices)
     }
 }
