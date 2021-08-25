@@ -20,5 +20,5 @@ interface QuestionsRepository {
      * @param count questions amount needed
      * @return result of list of questions
      */
-    fun getDistinctQuestions(count: Int): Result<List<Question>>
+    suspend fun getDistinctQuestions(count: Int): Result<List<Question>>
 }
