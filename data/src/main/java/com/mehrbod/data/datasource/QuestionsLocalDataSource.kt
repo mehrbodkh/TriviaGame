@@ -5,4 +5,5 @@ import com.mehrbod.domain.model.question.Question
 internal interface QuestionsLocalDataSource {
     suspend fun getDistinctQuestions(count: Int): Result<List<Question>>
     suspend fun getAnotherQuestion(questions: List<Question>): Result<Question>
+    suspend fun addQuestions(questions: List<Question>)
 }

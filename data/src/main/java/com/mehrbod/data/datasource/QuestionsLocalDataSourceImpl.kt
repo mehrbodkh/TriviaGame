@@ -10,4 +10,8 @@ internal class QuestionsLocalDataSourceImpl : QuestionsLocalDataSource {
     override suspend fun getAnotherQuestion(questions: List<Question>): Result<Question> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun addQuestions(questions: List<Question>) {
+        TODO("Not yet implemented")
+    }
 }
