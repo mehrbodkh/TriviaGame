@@ -21,4 +21,10 @@ interface QuestionsRepository {
      * @return result of list of questions
      */
     suspend fun getDistinctQuestions(count: Int): Result<List<Question>>
+
+    /**
+     * Returns one question which is not among the passed questions. Returns failure if there are
+     * no remaining questions.
+     */
+    suspend fun getAnotherQuestion(questions: List<Question>): Result<Question>
 }

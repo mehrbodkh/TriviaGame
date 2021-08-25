@@ -26,4 +26,14 @@ interface GameSessionRepository {
      * Clears all the already added answers and questions related to them.
      */
     fun clear()
+
+    /**
+     * Sets whether the user used extra question or not.
+     */
+    fun setUserUsedExtraQuestion(isUserUsedExtraQuestion: Boolean)
+
+    /**
+     * Returns whether the user used extra question or not.
+     */
+    fun isUserUsedExtraQuestion(): Boolean
 }
