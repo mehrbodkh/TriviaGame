@@ -1,7 +1,6 @@
 package com.mehrbod.domain.di
 
-import com.mehrbod.domain.interactor.AddUserAnswerUseCase
-import com.mehrbod.domain.interactor.AddUserAnswerUseCaseImpl
+import com.mehrbod.domain.interactor.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +14,24 @@ abstract class UseCaseModule {
     abstract fun bindAddUserAnswerUseCase(
         addUserAnswerUseCaseImpl: AddUserAnswerUseCaseImpl
     ): AddUserAnswerUseCase
+
+    @Binds
+    abstract fun bindGetExtraQuestionUseCase(
+        getExtraQuestionUseCaseImpl: GetExtraQuestionUseCaseImpl
+    ): GetExtraQuestionUseCase
+
+    @Binds
+    abstract fun bindGetQuestionsUseCase(
+        getQuestionsUseCaseImpl: GetQuestionsUseCaseImpl
+    ): GetQuestionsUseCase
+
+    @Binds
+    abstract fun bindGetSummeryUseCase(
+        getSummeryUseCaseImpl: GetSummeryUseCaseImpl
+    ): GetSummeryUseCase
+
+    @Binds
+    abstract fun bindRemoveWrongAnswersUseCase(
+        removeWrongAnswersUseCaseImpl: RemoveWrongAnswersUseCaseImpl
+    ): RemoveWrongAnswersUseCase
 }
