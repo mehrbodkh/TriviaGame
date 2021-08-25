@@ -38,12 +38,22 @@ interface GameSessionRepository {
     fun isUserUsedExtraQuestion(): Boolean
 
     /**
-     * Sets whether the user used remove wrong answersor not.
+     * Sets whether the user used remove wrong answer or not.
      */
-    fun setUserUsedRemoveWrongAnswers(isUserUsedExtraQuestion: Boolean)
+    fun setUserUsedRemoveWrongAnswers(isUserUsedRemoveWrongAnswers: Boolean)
 
     /**
      * Returns whether the user used remove wrong answers or not.
      */
     fun isUserUsedRemoveWrongAnswers(): Boolean
+
+    /**
+     * Sets whether the user used extra time or not.
+     */
+    fun setUserUsedExtraTime(isUserUsedExtraTime: Boolean)
+
+    /**
+     * Returns whether the user used extra time or not.
+     */
+    fun isUserUsedExtraTime(): Boolean
 }

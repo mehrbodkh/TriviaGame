@@ -39,4 +39,9 @@ abstract class UseCaseModule {
     abstract fun bindFinishSessionUseCase(
         finishSessionUseCaseImpl: FinishSessionUseCaseImpl
     ): FinishSessionUseCase
+
+    @Binds
+    abstract fun bindAddExtraTimeUseCase(
+        addExtraTimeUseCaseImpl: AddExtraTimeUseCaseImpl
+    ): AddExtraTimeUseCase
 }
