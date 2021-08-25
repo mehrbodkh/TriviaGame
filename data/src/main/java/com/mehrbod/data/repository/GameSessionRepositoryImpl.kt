@@ -6,7 +6,7 @@ import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.repository.GameSessionRepository
 import javax.inject.Inject
 
-class GameSessionRepositoryImpl @Inject constructor(
+internal class GameSessionRepositoryImpl @Inject constructor(
     private val sessionInfoLocalDataSource: SessionInfoLocalDataSource
 ): GameSessionRepository {
 
