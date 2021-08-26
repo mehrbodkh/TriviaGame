@@ -27,6 +27,8 @@
 
         <item name="cornerRadiusMedium">8dp</item>
         <item name="cornerRadiusLarge">24dp</item>
+
+        <item name="materialButtonStyle">@style/BaseTheme.TriviaGame.ButtonStyle</item>
     </style>
 
     <style name="BaseTheme.TriviaGame">
