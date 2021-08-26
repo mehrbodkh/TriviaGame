@@ -12,7 +12,13 @@
         tools:layout="@layout/splash_fragment" >
         <action
             android:id="@+id/action_splashFragment_to_startTriviaFragment"
-            app:destination="@id/startTriviaFragment" />
+            app:destination="@id/startTriviaFragment"
+            app:enterAnim="@anim/enter_from_down"
+            app:exitAnim="@anim/exit_to_down"
+            app:popEnterAnim="@anim/enter_from_down"
+            app:popExitAnim="@anim/exit_to_down"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -22,7 +28,11 @@
         tools:layout="@layout/start_trivia_fragment" >
         <action
             android:id="@+id/action_startTriviaFragment_to_questionsFragment"
-            app:destination="@id/questionsFragment" />
+            app:destination="@id/questionsFragment"
+            app:enterAnim="@anim/enter_from_down"
+            app:exitAnim="@anim/exit_to_down"
+            app:popEnterAnim="@anim/enter_from_down"
+            app:popExitAnim="@anim/exit_to_down"/>
     </fragment>
     <fragment
         android:id="@+id/questionsFragment"
