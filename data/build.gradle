@@ -41,12 +41,6 @@ dependencies {
     // -------- GSON ---------
     implementation 'com.google.code.gson:gson:2.8.7'
 
-    // -------- Retrofit -------
-    def retrofit_version = "2.9.0"
-    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    api "com.squareup.retrofit2:retrofit:$retrofit_version"
-    api 'com.squareup.okhttp3:logging-interceptor:3.12.8'
-
     // -------- Hilt ---------
     def hilt_version = "2.38.1"
     implementation "com.google.dagger:hilt-android:$hilt_version"
