@@ -74,12 +74,16 @@ class QuestionsFragment : Fragment() {
     private fun handleTimerState(state: TimerState) {
         when (state) {
             TimerState.Empty -> { }
-            is TimerState.UpdateTimeLeft -> updateTimer(state.time)
+            is TimerState.UpdateTimeLeft -> updateTimer(state.time, state.totalTime)
         }
     }
 
-    private fun updateTimer(time: Duration) {
-
+    private fun updateTimer(time: Duration, totalTime: Duration) = with(binding) {
+        timerBar.apply {
+            visibility = View.VISIBLE
+            progress = time.inWholeSeconds.toInt()
+            max = totalTime.inWholeSeconds.toInt()
+        }
     }
 
     private fun showLoading() {

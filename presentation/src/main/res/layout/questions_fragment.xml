@@ -18,4 +18,70 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
 
+    <ProgressBar
+        android:id="@+id/timer_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progressTint="?attr/colorPrimary"
+        android:max="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice_1"
+        style="@style/BaseTheme.TriviaGame.ChoiceButtonStyle"
+        app:strokeColor="?attr/colorPrimary"
+        app:cornerRadius="?attr/cornerRadiusLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?attr/spaceXLarge"
+        android:layout_marginEnd="?attr/spaceMedium"
+        app:layout_constraintEnd_toStartOf="@id/choice_2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/choice_3"
+        tools:text="Choice"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice_2"
+        style="@style/BaseTheme.TriviaGame.ChoiceButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?attr/spaceMedium"
+        android:layout_marginEnd="?attr/spaceXLarge"
+        app:layout_constraintStart_toEndOf="@id/choice_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/choice_4"
+        tools:text="Choice"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice_3"
+        style="@style/BaseTheme.TriviaGame.ChoiceButtonStyle"
+        app:strokeColor="?attr/colorPrimary"
+        app:cornerRadius="?attr/cornerRadiusLarge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?attr/spaceXLarge"
+        android:layout_marginBottom="?attr/spaceXLarge"
+        android:layout_marginEnd="?attr/spaceMedium"
+        app:layout_constraintEnd_toStartOf="@id/choice_4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Choice"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/choice_4"
+        style="@style/BaseTheme.TriviaGame.ChoiceButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="?attr/spaceMedium"
+        android:layout_marginEnd="?attr/spaceXLarge"
+        android:layout_marginBottom="?attr/spaceXLarge"
+        app:layout_constraintStart_toEndOf="@id/choice_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="Choice"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

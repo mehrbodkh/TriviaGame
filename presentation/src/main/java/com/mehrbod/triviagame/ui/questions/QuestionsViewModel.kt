@@ -54,7 +54,7 @@ class QuestionsViewModel @Inject constructor(
         }
 
         startTicker(Duration.seconds(10), Duration.seconds(1))
-            .onEach { _timerState.value = TimerState.UpdateTimeLeft(it) }
+            .onEach { _timerState.value = TimerState.UpdateTimeLeft(it, Duration.seconds(10)) }
             .onCompletion { handleQuestions(questions, startingQuestionIndex + 1) }
             .launchIn(viewModelScope)
 

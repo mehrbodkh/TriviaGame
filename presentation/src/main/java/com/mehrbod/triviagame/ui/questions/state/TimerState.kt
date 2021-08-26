@@ -6,5 +6,5 @@ import kotlin.time.ExperimentalTime
 sealed class TimerState {
     object Empty : TimerState()
     @ExperimentalTime
-    class UpdateTimeLeft(val time: Duration) : TimerState()
+    class UpdateTimeLeft(val time: Duration, val totalTime: Duration) : TimerState()
 }

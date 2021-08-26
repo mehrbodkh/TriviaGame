@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="BaseTheme.TriviaGame.ButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">?attr/cornerRadiusMedium</item>
+    </style>
+
+    <style name="BaseTheme.TriviaGame.ChoiceButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">?attr/cornerRadiusLarge</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="strokeWidth">2dp</item>
     </style>
 </resources>
