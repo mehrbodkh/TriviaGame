@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.mehrbod.domain.model.question.Answer
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.TextQuestion
 import com.mehrbod.triviagame.databinding.QuestionsFragmentBinding
@@ -100,10 +101,31 @@ class QuestionsFragment : Fragment() {
 
     private fun showPhotoQuestion(question: PhotoQuestion) {
         hideLoading()
+        handleChoices(question.choices)
     }
 
     private fun showTextQuestion(question: TextQuestion) {
         hideLoading()
+        handleChoices(question.choices)
+    }
+
+    private fun handleChoices(choices: List<Answer>) = with(binding) {
+        choice1.apply {
+            text = choices[0].text
+            setOnClickListener { viewModel.onChoiceClicked(choices[0]) }
+        }
+        choice2.apply {
+            text = choices[1].text
+            setOnClickListener { viewModel.onChoiceClicked(choices[1]) }
+        }
+        choice3.apply {
+            text = choices[2].text
+            setOnClickListener { viewModel.onChoiceClicked(choices[2]) }
+        }
+        choice4.apply {
+            text = choices[3].text
+            setOnClickListener { viewModel.onChoiceClicked(choices[3]) }
+        }
     }
 
     override fun onDestroyView() {

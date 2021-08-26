@@ -3,6 +3,7 @@ package com.mehrbod.triviagame.ui.questions
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mehrbod.domain.interactor.GetQuestionsUseCase
+import com.mehrbod.domain.model.question.Answer
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
@@ -57,6 +58,10 @@ class QuestionsViewModel @Inject constructor(
             .onEach { _timerState.value = TimerState.UpdateTimeLeft(it, Duration.seconds(10)) }
             .onCompletion { handleQuestions(questions, startingQuestionIndex + 1) }
             .launchIn(viewModelScope)
+
+    }
+
+    fun onChoiceClicked(choice: Answer) {
 
     }
 
