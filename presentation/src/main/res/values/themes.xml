@@ -1,16 +1,35 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.TriviaGame" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
+    <style name="BaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <item name="space2XSmall">2dp</item>
+        <item name="spaceXSmall">4dp</item>
+        <item name="spaceSmall">8dp</item>
+        <item name="spaceMedium">12dp</item>
+        <item name="spaceLarge">16dp</item>
+        <item name="spaceXLarge">24dp</item>
+        <item name="space2XLarge">32dp</item>
+        <item name="space3XLarge">40dp</item>
+
+        <item name="buttonHeightMedium">48dp</item>
+        <item name="buttonHeightLarge">60dp</item>
+
+        <item name="iconSizeSmall">24dp</item>
+        <item name="iconSizeXLarge">64dp</item>
+        <item name="iconSize2XLarge">128dp</item>
+
+        <item name="cornerRadiusMedium">8dp</item>
+        <item name="cornerRadiusLarge">24dp</item>
+    </style>
+
+    <style name="BaseTheme.TriviaGame">
+
     </style>
 </resources>
