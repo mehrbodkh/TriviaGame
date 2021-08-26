@@ -71,6 +71,25 @@
         android:visibility="gone"
         tools:visibility="visible"/>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_question_container"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="?attr/spaceXLarge"
+        android:layout_marginEnd="?attr/spaceXLarge"
+        android:layout_marginTop="?attr/spaceLarge"
+        android:layout_marginBottom="?attr/spaceLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/time_ability"
+        app:layout_constraintBottom_toTopOf="@id/choice_1"
+        tools:text="Some questions here."
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choice_1"
         style="@style/BaseTheme.TriviaGame.ChoiceButtonStyle"

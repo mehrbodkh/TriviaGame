@@ -105,16 +105,19 @@ class QuestionsFragment : Fragment() {
         hideLoading()
     }
 
-    private fun showPhotoQuestion(question: PhotoQuestion) {
+    private fun showPhotoQuestion(question: PhotoQuestion) = with(binding) {
         hideLoading()
         showAbilityButtons()
         handleChoices(question.choices)
+        textQuestionContainer.visibility = View.GONE
     }
 
-    private fun showTextQuestion(question: TextQuestion) {
+    private fun showTextQuestion(question: TextQuestion) = with(binding) {
         hideLoading()
         showAbilityButtons()
         handleChoices(question.choices)
+        textQuestionContainer.visibility = View.VISIBLE
+        textQuestionContainer.text = question.questionText
     }
 
     private fun handleChoices(choices: List<Answer>) = with(binding) {
