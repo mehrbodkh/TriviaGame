@@ -5,6 +5,7 @@ import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
 import kotlinx.coroutines.delay
+import javax.inject.Inject
 
 /**
  * Although we don't want to receive any data from remote servers, this implementation is here to
@@ -12,7 +13,7 @@ import kotlinx.coroutines.delay
  *
  * It is been used to simulate that but with hardcoded data.
  */
-internal class QuestionsRemoteDataSourceImpl : QuestionsRemoteDataSource {
+internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRemoteDataSource {
 
     /**
      * All these data should be fetched using an api service via an object injected into the class.
