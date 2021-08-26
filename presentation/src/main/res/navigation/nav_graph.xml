@@ -19,5 +19,14 @@
         android:id="@+id/startTriviaFragment"
         android:name="com.mehrbod.triviagame.ui.startscreen.StartTriviaFragment"
         android:label="start_trivia_fragment"
-        tools:layout="@layout/start_trivia_fragment" />
+        tools:layout="@layout/start_trivia_fragment" >
+        <action
+            android:id="@+id/action_startTriviaFragment_to_questionsFragment"
+            app:destination="@id/questionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.mehrbod.triviagame.ui.questions.QuestionsFragment"
+        android:label="questions_fragment"
+        tools:layout="@layout/questions_fragment" />
 </navigation>

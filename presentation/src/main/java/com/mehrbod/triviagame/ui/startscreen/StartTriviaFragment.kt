@@ -9,6 +9,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.mehrbod.triviagame.R
 import com.mehrbod.triviagame.databinding.StartTriviaFragmentBinding
 import com.mehrbod.triviagame.ui.startscreen.state.StartGameUIEvent
 import kotlinx.coroutines.flow.collect
@@ -34,6 +36,7 @@ class StartTriviaFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(StartTriviaViewModel::class.java)
 
         initEventObserver()
+        initClickListeners()
     }
 
     private fun initEventObserver() {
@@ -44,6 +47,12 @@ class StartTriviaFragment : Fragment() {
         }
     }
 
+    private fun initClickListeners() = with(binding) {
+        startButton.setOnClickListener {
+            viewModel.onStartButtonClicked()
+        }
+    }
+
     private fun handleUIEvents(event: StartGameUIEvent) {
         when (event) {
             StartGameUIEvent.NavigateToGame -> navigateToGame()
@@ -51,7 +60,7 @@ class StartTriviaFragment : Fragment() {
     }
 
     private fun navigateToGame() {
-
+        findNavController().navigate(R.id.action_startTriviaFragment_to_questionsFragment)
     }
 
     override fun onDestroyView() {
