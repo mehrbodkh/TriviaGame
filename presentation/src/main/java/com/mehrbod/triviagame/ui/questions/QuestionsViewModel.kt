@@ -36,6 +36,8 @@ class QuestionsViewModel @Inject constructor(
     private var questions: List<Question>? = null
     private var currentQuestionIndex = 0
 
+    private var isTimeAbilityChosen = false
+
     init {
         viewModelScope.launch {
             val questions = getQuestionsUseCase.getQuestions()
@@ -66,10 +68,32 @@ class QuestionsViewModel @Inject constructor(
             timerJob = startTicker(Duration.seconds(10), Duration.seconds(1))
                 .onEach { _timerState.value = TimerState.UpdateTimeLeft(it, Duration.seconds(10)) }
                 .onCompletion {
-                    currentQuestionIndex++
-                    handleQuestions()
+                    handleQuestionJobCompleted()
                 }
                 .launchIn(viewModelScope)
+        }
+    }
+
+    private fun handleQuestionJobCompleted() {
+        if (timerJob?.isCancelled == true) {
+            if (isTimeAbilityChosen) {
+                isTimeAbilityChosen = false
+                timerJob = startTicker(
+                    (_timerState.value as TimerState.UpdateTimeLeft).time + Duration.seconds(10),
+                    Duration.seconds(1)
+                )
+                    .onEach {
+                        _timerState.value = TimerState.UpdateTimeLeft(it, Duration.seconds(20))
+                    }
+                    .onCompletion {
+                        handleQuestionJobCompleted()
+                    }
+                    .launchIn(viewModelScope)
+            }
+
+        } else {
+            currentQuestionIndex++
+            handleQuestions()
         }
     }
 
@@ -81,7 +105,8 @@ class QuestionsViewModel @Inject constructor(
     }
 
     fun onTimeAbilityClicked() {
-
+        isTimeAbilityChosen = true
+        timerJob?.cancel()
     }
 
     fun onRemoveWrongAnswersAbilityClicked() {
