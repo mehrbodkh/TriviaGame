@@ -23,8 +23,12 @@ internal class QuestionsLocalDataSourceImpl @Inject constructor(
     override suspend fun getAnotherQuestion(questions: List<Question>): Result<Question> {
         val questionEntities = database.getAllQuestions()
 
-        val newQuestion = questionEntities.filter { !questions.contains(it.question) }.random()
-        return Result.success(newQuestion.question)
+        val newQuestions = questionEntities.filterNot { questions.contains(it.question) }
+        return if (newQuestions.isNotEmpty()) {
+            Result.success(newQuestions.random().question)
+        } else {
+            Result.failure(noQuestionsFoundException)
+        }
     }
 
     override suspend fun addQuestions(questions: List<Question>) {

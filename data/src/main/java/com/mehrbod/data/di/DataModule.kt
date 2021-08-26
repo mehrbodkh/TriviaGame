@@ -1,5 +1,7 @@
 package com.mehrbod.data.di
 
+import com.mehrbod.data.datasource.*
+import com.mehrbod.data.datasource.QuestionsLocalDataSourceImpl
 import com.mehrbod.data.datasource.QuestionsRemoteDataSource
 import com.mehrbod.data.datasource.QuestionsRemoteDataSourceImpl
 import com.mehrbod.data.datasource.SessionInfoLocalDataSource
@@ -26,6 +28,11 @@ internal abstract class DataModule {
     abstract fun bindQuestionsRemoteDataSource(
         questionsRemoteDataSourceImpl: QuestionsRemoteDataSourceImpl
     ): QuestionsRemoteDataSource
+
+    @Binds
+    abstract fun bindQuestionsLocalDataSource(
+        questionsLocalDataSourceImpl: QuestionsLocalDataSourceImpl
+    ): QuestionsLocalDataSource
 
     @Binds
     abstract fun bindGameSessionRepository(
