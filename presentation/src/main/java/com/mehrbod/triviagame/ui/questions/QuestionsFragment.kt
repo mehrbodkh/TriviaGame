@@ -15,6 +15,7 @@ import com.mehrbod.domain.model.question.TextQuestion
 import com.mehrbod.triviagame.databinding.QuestionsFragmentBinding
 import com.mehrbod.triviagame.ui.questions.state.QuestionsUIState
 import com.mehrbod.triviagame.ui.questions.state.TimerState
+import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -110,12 +111,15 @@ class QuestionsFragment : Fragment() {
         showAbilityButtons()
         handleChoices(question.choices)
         textQuestionContainer.visibility = View.GONE
+        photoQuestionContainer.visibility = View.VISIBLE
+        Picasso.get().load(question.photoUrl).into(photoQuestionContainer)
     }
 
     private fun showTextQuestion(question: TextQuestion) = with(binding) {
         hideLoading()
         showAbilityButtons()
         handleChoices(question.choices)
+        photoQuestionContainer.visibility = View.GONE
         textQuestionContainer.visibility = View.VISIBLE
         textQuestionContainer.text = question.questionText
     }

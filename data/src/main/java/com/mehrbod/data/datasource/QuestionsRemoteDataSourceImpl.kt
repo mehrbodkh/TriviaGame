@@ -33,6 +33,17 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 )
             )
             add(
+                PhotoQuestion(
+                    "https://cgmood.com/storage/previews/05-2020/20093/20093.jpg",
+                    listOf(
+                        Answer("3 balls", true),
+                        Answer("9 balls", false),
+                        Answer("1 ball", false),
+                        Answer("2 balls", false)
+                    )
+                )
+            )
+            add(
                 TextQuestion(
                     "What is the result of 3 + 4?",
                     listOf(

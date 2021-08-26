@@ -71,6 +71,21 @@
         android:visibility="gone"
         tools:visibility="visible"/>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/photo_question_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="?attr/spaceXLarge"
+        android:layout_marginEnd="?attr/spaceXLarge"
+        android:layout_marginTop="?attr/spaceLarge"
+        android:layout_marginBottom="?attr/spaceLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/time_ability"
+        app:layout_constraintBottom_toTopOf="@id/choice_1"
+        android:visibility="gone"
+        tools:visibility="gone" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_question_container"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
