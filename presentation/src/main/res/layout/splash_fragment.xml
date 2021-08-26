@@ -9,8 +9,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/logo"
+        android:src="@drawable/ic_baseline_search"
         android:tint="?attr/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="?attr/iconSize2XLarge"
+        android:layout_height="?attr/iconSize2XLarge" />
 
 </LinearLayout>
