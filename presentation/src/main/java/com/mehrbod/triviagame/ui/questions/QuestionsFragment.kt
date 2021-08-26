@@ -107,31 +107,43 @@ class QuestionsFragment : Fragment() {
 
     private fun showPhotoQuestion(question: PhotoQuestion) {
         hideLoading()
+        showAbilityButtons()
         handleChoices(question.choices)
     }
 
     private fun showTextQuestion(question: TextQuestion) {
         hideLoading()
+        showAbilityButtons()
         handleChoices(question.choices)
     }
 
     private fun handleChoices(choices: List<Answer>) = with(binding) {
         choice1.apply {
+            visibility = View.VISIBLE
             text = choices[0].text
             setOnClickListener { viewModel.onChoiceClicked(choices[0]) }
         }
         choice2.apply {
+            visibility = View.VISIBLE
             text = choices[1].text
             setOnClickListener { viewModel.onChoiceClicked(choices[1]) }
         }
         choice3.apply {
+            visibility = View.VISIBLE
             text = choices[2].text
             setOnClickListener { viewModel.onChoiceClicked(choices[2]) }
         }
         choice4.apply {
+            visibility = View.VISIBLE
             text = choices[3].text
             setOnClickListener { viewModel.onChoiceClicked(choices[3]) }
         }
+    }
+
+    private fun showAbilityButtons() = with(binding) {
+        anotherAbility.visibility = View.VISIBLE
+        removeAbility.visibility = View.VISIBLE
+        timeAbility.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

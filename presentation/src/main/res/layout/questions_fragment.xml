@@ -28,7 +28,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/time_ability"
@@ -39,7 +40,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/remove_ability"
         app:layout_constraintTop_toBottomOf="@id/timer_bar"
-        android:text="@string/button_extra_time_ability"/>
+        android:text="@string/button_extra_time_ability"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/remove_ability"
@@ -51,7 +54,9 @@
         app:layout_constraintStart_toEndOf="@id/time_ability"
         app:layout_constraintEnd_toStartOf="@id/another_ability"
         app:layout_constraintTop_toBottomOf="@id/timer_bar"
-        android:text="@string/button_remove_wrong_answers_ability"/>
+        android:text="@string/button_remove_wrong_answers_ability"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/another_ability"
@@ -62,7 +67,9 @@
         app:layout_constraintStart_toEndOf="@id/remove_ability"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/timer_bar"
-        android:text="@string/button_another_question"/>
+        android:text="@string/button_another_question"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choice_1"
@@ -76,7 +83,9 @@
         app:layout_constraintEnd_toStartOf="@id/choice_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/choice_3"
-        tools:text="Choice"/>
+        android:visibility="gone"
+        tools:text="Choice"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choice_2"
@@ -88,7 +97,9 @@
         app:layout_constraintStart_toEndOf="@id/choice_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/choice_4"
-        tools:text="Choice"/>
+        android:visibility="gone"
+        tools:text="Choice"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choice_3"
@@ -103,7 +114,9 @@
         app:layout_constraintEnd_toStartOf="@id/choice_4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Choice"/>
+        android:visibility="gone"
+        tools:text="Choice"
+        tools:visibility="visible"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/choice_4"
@@ -116,6 +129,8 @@
         app:layout_constraintStart_toEndOf="@id/choice_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Choice"/>
+        android:visibility="gone"
+        tools:text="Choice"
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
