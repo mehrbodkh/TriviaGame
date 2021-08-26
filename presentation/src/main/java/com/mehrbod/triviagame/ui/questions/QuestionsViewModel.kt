@@ -65,4 +65,16 @@ class QuestionsViewModel @Inject constructor(
 
     }
 
+    fun onTimeAbilityClicked() {
+
+    }
+
+    fun onRemoveWrongAnswersAbilityClicked() {
+
+    }
+
+    fun onAnotherQuestionAbilityClicked() {
+
+    }
+
 }

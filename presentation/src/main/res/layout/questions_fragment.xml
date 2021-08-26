@@ -31,6 +31,40 @@
         android:visibility="invisible"/>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/time_ability"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/spaceXSmall"
+        android:layout_marginStart="?attr/spaceXLarge"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/remove_ability"
+        app:layout_constraintTop_toBottomOf="@id/timer_bar"
+        android:text="@string/button_extra_time_ability"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/remove_ability"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/spaceXSmall"
+        android:layout_marginStart="?attr/spaceMedium"
+        android:layout_marginEnd="?attr/spaceMedium"
+        app:layout_constraintStart_toEndOf="@id/time_ability"
+        app:layout_constraintEnd_toStartOf="@id/another_ability"
+        app:layout_constraintTop_toBottomOf="@id/timer_bar"
+        android:text="@string/button_remove_wrong_answers_ability"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/another_ability"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/spaceXSmall"
+        android:layout_marginEnd="?attr/spaceXLarge"
+        app:layout_constraintStart_toEndOf="@id/remove_ability"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timer_bar"
+        android:text="@string/button_another_question"/>
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/choice_1"
         style="@style/BaseTheme.TriviaGame.ChoiceButtonStyle"
         app:strokeColor="?attr/colorPrimary"

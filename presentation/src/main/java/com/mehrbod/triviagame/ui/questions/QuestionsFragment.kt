@@ -2,7 +2,6 @@ package com.mehrbod.triviagame.ui.questions
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +44,7 @@ class QuestionsFragment : Fragment() {
 
         initQuestionStateObserver()
         initTimeStateObserver()
+        initAbilitiesClickListeners()
     }
 
     private fun initQuestionStateObserver() {
@@ -61,6 +61,12 @@ class QuestionsFragment : Fragment() {
                 viewModel.timerState.collect { handleTimerState(it) }
             }
         }
+    }
+
+    private fun initAbilitiesClickListeners() = with(binding) {
+        timeAbility.setOnClickListener { viewModel.onTimeAbilityClicked() }
+        removeAbility.setOnClickListener { viewModel.onRemoveWrongAnswersAbilityClicked() }
+        anotherAbility.setOnClickListener { viewModel.onAnotherQuestionAbilityClicked() }
     }
 
     private fun handleQuestionUiState(state: QuestionsUIState) {
