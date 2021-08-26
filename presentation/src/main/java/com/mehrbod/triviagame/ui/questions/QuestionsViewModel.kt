@@ -8,8 +8,8 @@ import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
 import com.mehrbod.triviagame.ui.questions.state.QuestionsUIState
 import com.mehrbod.triviagame.ui.questions.state.TimerState
+import com.mehrbod.triviagame.util.startTicker
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -60,15 +60,4 @@ class QuestionsViewModel @Inject constructor(
 
     }
 
-}
-
-@ExperimentalTime
-fun startTicker(length: Duration, period: Duration, initialDelay: Duration = Duration.ZERO) = flow {
-    delay(initialDelay)
-    var timeLeft = length
-    while (timeLeft.isPositive()) {
-        emit(timeLeft)
-        delay(period)
-        timeLeft = timeLeft.minus(Duration.milliseconds(1000L))
-    }
 }
