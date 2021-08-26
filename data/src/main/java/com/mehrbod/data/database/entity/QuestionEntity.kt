@@ -8,5 +8,5 @@ import com.mehrbod.domain.model.question.Question
 internal data class QuestionEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    val questions: Question
+    val question: Question
 )
