@@ -4,7 +4,7 @@ import com.mehrbod.data.adapter.convertToEntity
 import com.mehrbod.data.database.dao.QuestionsDao
 import com.mehrbod.data.database.entity.QuestionEntity
 import com.mehrbod.domain.exception.noQuestionsFoundException
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
 import io.mockk.*
@@ -73,15 +73,15 @@ internal class QuestionsLocalDataSourceImplTest {
         coEvery { database.getAllQuestions() } returns listOf(
             TextQuestion(
                 "1",
-                listOf(Answer("1", false))
+                listOf(Choice("1", false))
             ).convertToEntity(),
             TextQuestion(
                 "2",
-                listOf(Answer("2", false))
+                listOf(Choice("2", false))
             ).convertToEntity(),
             TextQuestion(
                 "3",
-                listOf(Answer("3", false))
+                listOf(Choice("3", false))
             ).convertToEntity()
         )
 
@@ -89,11 +89,11 @@ internal class QuestionsLocalDataSourceImplTest {
             listOf(
                 TextQuestion(
                     "1",
-                    listOf(Answer("1", false))
+                    listOf(Choice("1", false))
                 ),
                 TextQuestion(
                     "2",
-                    listOf(Answer("2", false))
+                    listOf(Choice("2", false))
                 ),
             )
         )
@@ -102,7 +102,7 @@ internal class QuestionsLocalDataSourceImplTest {
         assertEquals(
             TextQuestion(
                 "3",
-                listOf(Answer("3", false))
+                listOf(Choice("3", false))
             ), result.getOrNull()
         )
     }
@@ -112,11 +112,11 @@ internal class QuestionsLocalDataSourceImplTest {
         coEvery { database.getAllQuestions() } returns listOf(
             TextQuestion(
                 "1",
-                listOf(Answer("1", false))
+                listOf(Choice("1", false))
             ).convertToEntity(),
             TextQuestion(
                 "2",
-                listOf(Answer("2", false))
+                listOf(Choice("2", false))
             ).convertToEntity()
         )
 
@@ -124,11 +124,11 @@ internal class QuestionsLocalDataSourceImplTest {
             listOf(
                 TextQuestion(
                     "1",
-                    listOf(Answer("1", false))
+                    listOf(Choice("1", false))
                 ),
                 TextQuestion(
                     "2",
-                    listOf(Answer("2", false))
+                    listOf(Choice("2", false))
                 ),
             )
         )

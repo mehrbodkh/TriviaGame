@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mehrbod.domain.interactor.AddUserAnswerUseCase
 import com.mehrbod.domain.interactor.GetQuestionsUseCase
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
@@ -73,7 +73,7 @@ class QuestionsViewModel @Inject constructor(
         }
     }
 
-    fun onChoiceClicked(choice: Answer) {
+    fun onChoiceClicked(choice: Choice) {
         questions?.let { questions ->
             addUserAnswerUseCase.addAnswer(questions[currentQuestionIndex], choice)
             timerJob?.cancel()

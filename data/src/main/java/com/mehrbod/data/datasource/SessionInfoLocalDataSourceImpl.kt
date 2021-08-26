@@ -1,21 +1,21 @@
 package com.mehrbod.data.datasource
 
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 import javax.inject.Inject
 
 internal class SessionInfoLocalDataSourceImpl @Inject constructor(): SessionInfoLocalDataSource {
 
-    private val answeredQuestions = ArrayList<Pair<Question, Answer?>>()
+    private val answeredQuestions = ArrayList<Pair<Question, Choice?>>()
     private var isUserUsedExtraQuestion = false
     private var isUserUsedRemoveWrongAnswers = false
     private var isUserUsedExtraTime = false
 
-    override fun addAnsweredQuestion(question: Question, answer: Answer?) {
+    override fun addAnsweredQuestion(question: Question, answer: Choice?) {
         answeredQuestions.add(question to answer)
     }
 
-    override fun getAllAnsweredQuestions(): List<Pair<Question, Answer?>> {
+    override fun getAllAnsweredQuestions(): List<Pair<Question, Choice?>> {
         return answeredQuestions
     }
 

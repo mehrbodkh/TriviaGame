@@ -1,6 +1,6 @@
 package com.mehrbod.domain.model.question
 
-data class Answer(
+data class Choice(
     val text: String,
     val isCorrect: Boolean
 )

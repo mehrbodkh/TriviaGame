@@ -1,6 +1,6 @@
 package com.mehrbod.data.datasource
 
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
@@ -25,10 +25,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 2 + 2?",
                     listOf(
-                        Answer("1", false),
-                        Answer("4", true),
-                        Answer("3", false),
-                        Answer("5", false)
+                        Choice("1", false),
+                        Choice("4", true),
+                        Choice("3", false),
+                        Choice("5", false)
                     )
                 )
             )
@@ -36,10 +36,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 PhotoQuestion(
                     "https://cgmood.com/storage/previews/05-2020/20093/20093.jpg",
                     listOf(
-                        Answer("3 balls", true),
-                        Answer("9 balls", false),
-                        Answer("1 ball", false),
-                        Answer("2 balls", false)
+                        Choice("3 balls", true),
+                        Choice("9 balls", false),
+                        Choice("1 ball", false),
+                        Choice("2 balls", false)
                     )
                 )
             )
@@ -47,10 +47,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 3 + 4?",
                     listOf(
-                        Answer("5", false),
-                        Answer("6", false),
-                        Answer("7", true),
-                        Answer("8", false)
+                        Choice("5", false),
+                        Choice("6", false),
+                        Choice("7", true),
+                        Choice("8", false)
                     )
                 )
             )
@@ -58,10 +58,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 7 + 8?",
                     listOf(
-                        Answer("5", false),
-                        Answer("6", false),
-                        Answer("15", true),
-                        Answer("8", false)
+                        Choice("5", false),
+                        Choice("6", false),
+                        Choice("15", true),
+                        Choice("8", false)
                     )
                 )
             )
@@ -69,10 +69,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 1 + 9?",
                     listOf(
-                        Answer("1", false),
-                        Answer("2", false),
-                        Answer("15", false),
-                        Answer("9", true)
+                        Choice("1", false),
+                        Choice("2", false),
+                        Choice("15", false),
+                        Choice("9", true)
                     )
                 )
             )
@@ -80,10 +80,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 8 + 8?",
                     listOf(
-                        Answer("4", false),
-                        Answer("8", false),
-                        Answer("16", true),
-                        Answer("5", false)
+                        Choice("4", false),
+                        Choice("8", false),
+                        Choice("16", true),
+                        Choice("5", false)
                     )
                 )
             )
@@ -91,10 +91,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 PhotoQuestion(
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1jxKbX3TkYKyu0RxVD283u-etO9p0AzOesw&usqp=CAU",
                     listOf(
-                        Answer("3", true),
-                        Answer("9", false),
-                        Answer("0", false),
-                        Answer("2", false)
+                        Choice("3", true),
+                        Choice("9", false),
+                        Choice("0", false),
+                        Choice("2", false)
                     )
                 )
             )
@@ -102,10 +102,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 1 + 1?",
                     listOf(
-                        Answer("2", true),
-                        Answer("8", false),
-                        Answer("16", false),
-                        Answer("5", false)
+                        Choice("2", true),
+                        Choice("8", false),
+                        Choice("16", false),
+                        Choice("5", false)
                     )
                 )
             )
@@ -113,10 +113,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 4 + 5?",
                     listOf(
-                        Answer("4", false),
-                        Answer("9", true),
-                        Answer("16", false),
-                        Answer("5", false)
+                        Choice("4", false),
+                        Choice("9", true),
+                        Choice("16", false),
+                        Choice("5", false)
                     )
                 )
             )
@@ -124,10 +124,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 8 * 8?",
                     listOf(
-                        Answer("12", false),
-                        Answer("16", false),
-                        Answer("64", true),
-                        Answer("21", false)
+                        Choice("12", false),
+                        Choice("16", false),
+                        Choice("64", true),
+                        Choice("21", false)
                     )
                 )
             )
@@ -135,10 +135,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 8 + 80?",
                     listOf(
-                        Answer("88", true),
-                        Answer("8", false),
-                        Answer("16", false),
-                        Answer("5", false)
+                        Choice("88", true),
+                        Choice("8", false),
+                        Choice("16", false),
+                        Choice("5", false)
                     )
                 )
             )
@@ -146,10 +146,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 2 + 20?",
                     listOf(
-                        Answer("22", true),
-                        Answer("1", false),
-                        Answer("1324", false),
-                        Answer("342", false)
+                        Choice("22", true),
+                        Choice("1", false),
+                        Choice("1324", false),
+                        Choice("342", false)
                     )
                 )
             )
@@ -157,10 +157,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 122 / 2?",
                     listOf(
-                        Answer("342", true),
-                        Answer("54", false),
-                        Answer("545435", false),
-                        Answer("61", true)
+                        Choice("342", true),
+                        Choice("54", false),
+                        Choice("545435", false),
+                        Choice("61", true)
                     )
                 )
             )
@@ -168,10 +168,10 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 90 + 80?",
                     listOf(
-                        Answer("88", false),
-                        Answer("43243", false),
-                        Answer("170", true),
-                        Answer("5234", false)
+                        Choice("88", false),
+                        Choice("43243", false),
+                        Choice("170", true),
+                        Choice("5234", false)
                     )
                 )
             )

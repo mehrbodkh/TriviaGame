@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.TextQuestion
 import com.mehrbod.triviagame.databinding.QuestionsFragmentBinding
@@ -124,7 +124,7 @@ class QuestionsFragment : Fragment() {
         textQuestionContainer.text = question.questionText
     }
 
-    private fun handleChoices(choices: List<Answer>) = with(binding) {
+    private fun handleChoices(choices: List<Choice>) = with(binding) {
         choice1.apply {
             visibility = View.VISIBLE
             text = choices[0].text

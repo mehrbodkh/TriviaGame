@@ -1,6 +1,6 @@
 package com.mehrbod.domain.interactor
 
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 
 /**
@@ -8,5 +8,5 @@ import com.mehrbod.domain.model.question.Question
  * provide any answers.
  */
 interface AddUserAnswerUseCase {
-    fun addAnswer(question: Question, answer: Answer?)
+    fun addAnswer(question: Question, answer: Choice?)
 }

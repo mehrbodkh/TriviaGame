@@ -1,6 +1,6 @@
 package com.mehrbod.domain.interactor
 
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.repository.GameSessionRepository
 import io.mockk.*
@@ -42,8 +42,8 @@ class FinishSessionUseCaseImplTest {
     fun `test get full summery - result`() {
         val question = mockk<Question>(relaxed = true)
         val question2 = mockk<Question>(relaxed = true)
-        val answer = mockk<Answer>()
-        val answer2 = mockk<Answer>()
+        val answer = mockk<Choice>()
+        val answer2 = mockk<Choice>()
         every { answer getProperty "isCorrect" } returns true
         every { answer2 getProperty "isCorrect" } returns false
         every { question getProperty "choices" } returns listOf(answer)
@@ -65,7 +65,7 @@ class FinishSessionUseCaseImplTest {
     @Test
     fun `test get summery`() {
         val question = mockk<Question>(relaxed = true)
-        val answer = mockk<Answer>()
+        val answer = mockk<Choice>()
         every { answer getProperty "isCorrect" } returns true
         every { question getProperty "choices" } returns listOf(answer)
         every { gameSessionRepository.getAllAnsweredQuestions() } returns listOf(question to answer)

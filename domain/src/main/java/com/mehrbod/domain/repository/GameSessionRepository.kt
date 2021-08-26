@@ -1,6 +1,6 @@
 package com.mehrbod.domain.repository
 
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 
 /**
@@ -14,13 +14,13 @@ interface GameSessionRepository {
     /**
      * It stores the answered question. Send null answer if there were non.
      */
-    fun addAnsweredQuestion(question: Question, answer: Answer?)
+    fun addAnsweredQuestion(question: Question, answer: Choice?)
 
     /**
      * It returns all the answered questions added before. Returns empty list if nothing has beed
      * added. Returns null answer if there were non.
      */
-    fun getAllAnsweredQuestions(): List<Pair<Question, Answer?>>
+    fun getAllAnsweredQuestions(): List<Pair<Question, Choice?>>
 
     /**
      * Clears all the already added answers and questions related to them.
