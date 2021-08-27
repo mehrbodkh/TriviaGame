@@ -44,6 +44,9 @@ class QuestionsViewModel @Inject constructor(
         MutableStateFlow<RemoveAnswersUIState>(RemoveAnswersUIState.Enable)
     val removeAnswerState: StateFlow<RemoveAnswersUIState> = _removeAnswerState
 
+    private val _uiEvents = MutableSharedFlow<QuestionsEvent>()
+    val uiEvents: SharedFlow<QuestionsEvent> = _uiEvents
+
     private var timerJob: Job? = null
     private var questions: List<Question>? = null
     private var currentQuestionIndex = 0
@@ -66,6 +69,9 @@ class QuestionsViewModel @Inject constructor(
     private fun handleCurrentQuestions() {
         questions?.let { questions ->
             if (currentQuestionIndex >= questions.size) {
+                viewModelScope.launch {
+                    _uiEvents.emit(QuestionsEvent.NavigateToSummery)
+                }
                 return
             }
 
