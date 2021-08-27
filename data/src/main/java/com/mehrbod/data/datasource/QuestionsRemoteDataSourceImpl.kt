@@ -157,7 +157,7 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                 TextQuestion(
                     "What is the result of 122 / 2?",
                     listOf(
-                        Choice("342", true),
+                        Choice("342", false),
                         Choice("54", false),
                         Choice("545435", false),
                         Choice("61", true)

@@ -7,7 +7,7 @@ import com.mehrbod.data.database.entity.QuestionEntity
 
 @Dao
 internal interface QuestionsDao {
-    @Query("SELECT * FROM questions_table ORDER BY id")
+    @Query("SELECT * FROM questions_table ORDER BY RANDOM()")
     suspend fun getAllQuestions(): List<QuestionEntity>
 
     @Insert
