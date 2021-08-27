@@ -135,15 +135,20 @@ class QuestionsFragment : Fragment() {
             text = choices[1].text
             setOnClickListener { viewModel.onChoiceClicked(choices[1]) }
         }
-        choice3.apply {
-            visibility = View.VISIBLE
-            text = choices[2].text
-            setOnClickListener { viewModel.onChoiceClicked(choices[2]) }
-        }
-        choice4.apply {
-            visibility = View.VISIBLE
-            text = choices[3].text
-            setOnClickListener { viewModel.onChoiceClicked(choices[3]) }
+        if (choices.size > 2) {
+            choice3.apply {
+                visibility = View.VISIBLE
+                text = choices[2].text
+                setOnClickListener { viewModel.onChoiceClicked(choices[2]) }
+            }
+            choice4.apply {
+                visibility = View.VISIBLE
+                text = choices[3].text
+                setOnClickListener { viewModel.onChoiceClicked(choices[3]) }
+            }
+        } else {
+            choice3.visibility = View.GONE
+            choice4.visibility = View.GONE
         }
     }
 

@@ -114,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="?attr/spaceXLarge"
         android:layout_marginEnd="?attr/spaceMedium"
+        app:layout_goneMarginBottom="?attr/spaceXLarge"
         app:layout_constraintEnd_toStartOf="@id/choice_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/choice_3"
@@ -131,6 +132,7 @@
         app:layout_constraintStart_toEndOf="@id/choice_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/choice_4"
+        app:layout_goneMarginBottom="?attr/spaceXLarge"
         android:visibility="gone"
         tools:text="Choice"
         tools:visibility="visible"/>

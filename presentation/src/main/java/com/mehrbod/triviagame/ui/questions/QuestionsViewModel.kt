@@ -2,8 +2,10 @@ package com.mehrbod.triviagame.ui.questions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mehrbod.domain.interactor.AddExtraTimeUseCase
 import com.mehrbod.domain.interactor.AddUserAnswerUseCase
 import com.mehrbod.domain.interactor.GetQuestionsUseCase
+import com.mehrbod.domain.interactor.RemoveWrongAnswersUseCase
 import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
@@ -23,7 +25,9 @@ import kotlin.time.ExperimentalTime
 @HiltViewModel
 class QuestionsViewModel @Inject constructor(
     private val getQuestionsUseCase: GetQuestionsUseCase,
-    private val addUserAnswerUseCase: AddUserAnswerUseCase
+    private val addUserAnswerUseCase: AddUserAnswerUseCase,
+    private val addExtraTimeUseCase: AddExtraTimeUseCase,
+    private val removeWrongAnswersUseCase: RemoveWrongAnswersUseCase
 ) : ViewModel() {
 
     private val _questionsUiState = MutableStateFlow<QuestionsUIState>(QuestionsUIState.Loading)
@@ -44,14 +48,14 @@ class QuestionsViewModel @Inject constructor(
 
             questions.getOrNull()?.let {
                 this@QuestionsViewModel.questions = it
-                handleQuestions()
+                handleCurrentQuestions()
             } ?: run {
 
             }
         }
     }
 
-    private fun handleQuestions() {
+    private fun handleCurrentQuestions() {
         questions?.let { questions ->
             if (currentQuestionIndex >= questions.size) {
                 return
@@ -77,24 +81,36 @@ class QuestionsViewModel @Inject constructor(
     private fun handleQuestionJobCompleted() {
         if (timerJob?.isCancelled == true) {
             if (isTimeAbilityChosen) {
-                isTimeAbilityChosen = false
-                timerJob = startTicker(
-                    (_timerState.value as TimerState.UpdateTimeLeft).time + Duration.seconds(10),
-                    Duration.seconds(1)
-                )
-                    .onEach {
-                        _timerState.value = TimerState.UpdateTimeLeft(it, Duration.seconds(20))
-                    }
-                    .onCompletion {
-                        handleQuestionJobCompleted()
-                    }
-                    .launchIn(viewModelScope)
+                handleExtraTimeAbility()
+            } else if (false) {
+
+            } else {
+                goToNextQuestion()
             }
 
         } else {
-            currentQuestionIndex++
-            handleQuestions()
+            goToNextQuestion()
         }
+    }
+
+    private fun handleExtraTimeAbility() {
+        isTimeAbilityChosen = false
+        timerJob = startTicker(
+            (_timerState.value as TimerState.UpdateTimeLeft).time + Duration.seconds(10),
+            Duration.seconds(1)
+        )
+            .onEach {
+                _timerState.value = TimerState.UpdateTimeLeft(it, Duration.seconds(20))
+            }
+            .onCompletion {
+                handleQuestionJobCompleted()
+            }
+            .launchIn(viewModelScope)
+    }
+
+    private fun goToNextQuestion() {
+        currentQuestionIndex++
+        handleCurrentQuestions()
     }
 
     fun onChoiceClicked(choice: Choice) {
@@ -105,12 +121,24 @@ class QuestionsViewModel @Inject constructor(
     }
 
     fun onTimeAbilityClicked() {
-        isTimeAbilityChosen = true
-        timerJob?.cancel()
+        if (addExtraTimeUseCase.addExtraTime()) {
+            isTimeAbilityChosen = true
+            timerJob?.cancel()
+        }
     }
 
     fun onRemoveWrongAnswersAbilityClicked() {
+        questions?.let { questions ->
+            val question = removeWrongAnswersUseCase.removeWrongAnswers(questions[currentQuestionIndex])
 
+            question.getOrNull()?.let { question ->
+                if (question is PhotoQuestion) {
+                    _questionsUiState.value = QuestionsUIState.ShowPhotoQuestion(question)
+                } else if (question is TextQuestion) {
+                    _questionsUiState.value = QuestionsUIState.ShowTextQuestion(question)
+                }
+            }
+        }
     }
 
     fun onAnotherQuestionAbilityClicked() {
