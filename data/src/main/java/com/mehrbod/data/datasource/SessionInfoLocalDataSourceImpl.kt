@@ -3,7 +3,9 @@ package com.mehrbod.data.datasource
 import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class SessionInfoLocalDataSourceImpl @Inject constructor(): SessionInfoLocalDataSource {
 
     private val answeredQuestions = ArrayList<Pair<Question, Choice?>>()
@@ -16,7 +18,7 @@ internal class SessionInfoLocalDataSourceImpl @Inject constructor(): SessionInfo
     }
 
     override fun getAllAnsweredQuestions(): List<Pair<Question, Choice?>> {
-        return answeredQuestions
+        return answeredQuestions.toList()
     }
 
     override fun clear() {
