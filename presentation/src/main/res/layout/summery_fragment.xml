@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.summery.SummeryFragment">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/score_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/space3XLarge"
+        android:text="@string/result_score_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/score_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/score_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/space3XLarge"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/correct_title"
+        tools:text="8/10"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/replay_button"
+        android:background="@null"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_replay_24"
+        android:tint="?attr/colorPrimary"
+        android:layout_marginEnd="?attr/spaceLarge"
+        android:layout_marginBottom="?attr/spaceLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/correct_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_correct_answers"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/correct_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/correct_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/correct_title"
+        tools:text="8"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/incorrect_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_incorrect_answers"
+        app:layout_constraintTop_toBottomOf="@id/correct_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/correct_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/incorrect_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/correct_text"
+        app:layout_constraintEnd_toEndOf="@id/correct_text"
+        app:layout_constraintStart_toStartOf="@id/correct_text"
+        tools:text="10"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/unanswered_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_unanswered_questions"
+        app:layout_constraintTop_toBottomOf="@id/incorrect_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/incorrect_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/unanswered_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/incorrect_text"
+        app:layout_constraintEnd_toEndOf="@id/incorrect_text"
+        app:layout_constraintStart_toStartOf="@id/incorrect_text"
+        tools:text="2"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/total_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_total_questions"
+        app:layout_constraintTop_toBottomOf="@id/unanswered_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/unanswered_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/total_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/unanswered_text"
+        app:layout_constraintEnd_toEndOf="@id/unanswered_text"
+        app:layout_constraintStart_toStartOf="@id/unanswered_text"
+        tools:text="10"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

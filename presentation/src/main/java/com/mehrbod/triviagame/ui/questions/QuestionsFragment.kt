@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
@@ -46,6 +47,7 @@ class QuestionsFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(QuestionsViewModel::class.java)
 
         initQuestionStateObserver()
+        initEventObserver()
         initTimeStateObserver()
         initAbilitiesClickListeners()
         initAbilitiesObservers()
@@ -55,6 +57,16 @@ class QuestionsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.questionsUiState.collect { handleQuestionUiState(it) }
+            }
+        }
+    }
+
+    private fun initEventObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.uiEvents.collect { when (it) {
+                    QuestionsEvent.NavigateToSummery -> navigateToSummeryScreen()
+                } }
             }
         }
     }
@@ -202,6 +214,10 @@ class QuestionsFragment : Fragment() {
         anotherAbility.visibility = View.VISIBLE
         removeAbility.visibility = View.VISIBLE
         timeAbility.visibility = View.VISIBLE
+    }
+
+    private fun navigateToSummeryScreen() {
+        findNavController().navigate(R.id.action_questionsFragment_to_summeryFragment)
     }
 
     override fun onDestroyView() {

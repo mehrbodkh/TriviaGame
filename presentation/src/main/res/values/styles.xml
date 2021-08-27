@@ -5,6 +5,16 @@
         <item name="cornerRadius">?attr/cornerRadiusMedium</item>
     </style>
 
+    <style name="BaseTheme.TriviaGame.Button.Round" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:insetBottom">6dp</item>
+        <item name="android:insetLeft">6dp</item>
+        <item name="android:insetTop">6dp</item>
+        <item name="android:insetRight">6dp</item>
+        <item name="iconSize">?attr/iconSizeXLarge</item>
+        <item name="iconGravity">textEnd</item>
+        <item name="cornerRadius">?attr/cornerRadiusLarge</item>
+    </style>
+
     <style name="BaseTheme.TriviaGame.ChoiceButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="cornerRadius">?attr/cornerRadiusLarge</item>
         <item name="strokeColor">?attr/colorPrimary</item>

@@ -12,9 +12,15 @@ class FinishSessionUseCaseImpl @Inject constructor(
         val result = gameSessionRepository.getAllAnsweredQuestions()
         gameSessionRepository.clear()
 
+        val correctAnswers = result.count { it.first.choices.find { question -> question.isCorrect } == it.second }
+        val incorrectAnswers = result.filter { it.second != null && !it.second!!.isCorrect }.size
+
         return Summery(
-            result.count { it.first.choices.find { question -> question.isCorrect } == it.second },
+            correctAnswers,
+            incorrectAnswers,
+            result.size - (correctAnswers + incorrectAnswers),
             result.size,
+            "$correctAnswers/${result.size}"
         )
     }
 }
