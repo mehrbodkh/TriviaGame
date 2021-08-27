@@ -1,7 +1,7 @@
 package com.mehrbod.data.repository
 
 import com.mehrbod.data.datasource.SessionInfoLocalDataSource
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.repository.GameSessionRepository
 import javax.inject.Inject
@@ -10,11 +10,11 @@ internal class GameSessionRepositoryImpl @Inject constructor(
     private val sessionInfoLocalDataSource: SessionInfoLocalDataSource
 ): GameSessionRepository {
 
-    override fun addAnsweredQuestion(question: Question, answer: Answer?) {
+    override fun addAnsweredQuestion(question: Question, answer: Choice?) {
         sessionInfoLocalDataSource.addAnsweredQuestion(question, answer)
     }
 
-    override fun getAllAnsweredQuestions(): List<Pair<Question, Answer?>> {
+    override fun getAllAnsweredQuestions(): List<Pair<Question, Choice?>> {
         return sessionInfoLocalDataSource.getAllAnsweredQuestions()
     }
 

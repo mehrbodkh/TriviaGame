@@ -1,7 +1,7 @@
 package com.mehrbod.domain.interactor
 
 import com.mehrbod.domain.exception.userUsedRemoveWrongAnswersException
-import com.mehrbod.domain.model.question.Answer
+import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
 import com.mehrbod.domain.repository.GameSessionRepository
@@ -32,10 +32,10 @@ class RemoveWrongAnswersUseCaseImplTest {
         val question = mockk<TextQuestion>()
         every { question getProperty "questionText" } returns "something"
         every { question getProperty "choices" } returns listOf(
-            Answer("1", false),
-            Answer("2", false),
-            Answer("3", true),
-            Answer("4", false)
+            Choice("1", false),
+            Choice("2", false),
+            Choice("3", true),
+            Choice("4", false)
         )
         every { (question as Question).copy(any()) } returns question
         every { gameSessionRepository.isUserUsedRemoveWrongAnswers() } returns false
@@ -55,10 +55,10 @@ class RemoveWrongAnswersUseCaseImplTest {
         val question = mockk<TextQuestion>()
         every { question getProperty "questionText" } returns "something"
         every { question getProperty "choices" } returns listOf(
-            Answer("1", false),
-            Answer("2", false),
-            Answer("3", true),
-            Answer("4", false)
+            Choice("1", false),
+            Choice("2", false),
+            Choice("3", true),
+            Choice("4", false)
         )
         every { (question as Question).copy(any()) } returns question
         every { gameSessionRepository.isUserUsedRemoveWrongAnswers() } returns true

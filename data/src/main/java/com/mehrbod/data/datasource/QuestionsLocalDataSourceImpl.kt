@@ -14,7 +14,7 @@ internal class QuestionsLocalDataSourceImpl @Inject constructor(
         val questions = database.getAllQuestions()
 
         return if (questions.size >= count) {
-            Result.success(questions.map { it.question })
+            Result.success(questions.map { it.question }.take(count))
         } else {
             Result.failure(noQuestionsFoundException)
         }
