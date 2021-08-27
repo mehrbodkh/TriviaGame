@@ -7,8 +7,7 @@ import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
 import com.mehrbod.domain.model.question.TextQuestion
-import com.mehrbod.triviagame.ui.questions.state.QuestionsUIState
-import com.mehrbod.triviagame.ui.questions.state.TimerState
+import com.mehrbod.triviagame.ui.questions.state.*
 import com.mehrbod.triviagame.util.startTicker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
@@ -33,6 +32,17 @@ class QuestionsViewModel @Inject constructor(
 
     private val _timerState = MutableStateFlow<TimerState>(TimerState.Empty)
     val timerState: StateFlow<TimerState> = _timerState
+
+    private val _extraTimeState = MutableStateFlow<ExtraTimeUIState>(ExtraTimeUIState.Enable)
+    val extraTimeState: StateFlow<ExtraTimeUIState> = _extraTimeState
+
+    private val _anotherQuestionState =
+        MutableStateFlow<AnotherQuestionUIState>(AnotherQuestionUIState.Enable)
+    val anotherQuestionState: StateFlow<AnotherQuestionUIState> = _anotherQuestionState
+
+    private val _removeAnswerState =
+        MutableStateFlow<RemoveAnswersUIState>(RemoveAnswersUIState.Enable)
+    val removeAnswerState: StateFlow<RemoveAnswersUIState> = _removeAnswerState
 
     private var timerJob: Job? = null
     private var questions: List<Question>? = null
@@ -139,6 +149,7 @@ class QuestionsViewModel @Inject constructor(
 
     fun onTimeAbilityClicked() {
         if (addExtraTimeUseCase.addExtraTime()) {
+            _extraTimeState.value = ExtraTimeUIState.Disable
             isTimeAbilityChosen = true
             timerJob?.cancel()
         }
@@ -146,13 +157,15 @@ class QuestionsViewModel @Inject constructor(
 
     fun onRemoveWrongAnswersAbilityClicked() {
         questions?.let { questions ->
-            val question = removeWrongAnswersUseCase.removeWrongAnswers(questions[currentQuestionIndex])
+            val question =
+                removeWrongAnswersUseCase.removeWrongAnswers(questions[currentQuestionIndex])
+            _removeAnswerState.value = RemoveAnswersUIState.Disable
 
-            question.getOrNull()?.let { question ->
-                if (question is PhotoQuestion) {
-                    _questionsUiState.value = QuestionsUIState.ShowPhotoQuestion(question)
-                } else if (question is TextQuestion) {
-                    _questionsUiState.value = QuestionsUIState.ShowTextQuestion(question)
+            question.getOrNull()?.let { it ->
+                if (it is PhotoQuestion) {
+                    _questionsUiState.value = QuestionsUIState.ShowPhotoQuestion(it)
+                } else if (it is TextQuestion) {
+                    _questionsUiState.value = QuestionsUIState.ShowTextQuestion(it)
                 }
             }
         }
@@ -162,6 +175,7 @@ class QuestionsViewModel @Inject constructor(
         viewModelScope.launch {
             questions?.let { questions ->
                 val newQuestion = getExtraQuestionUseCase.getExtraQuestion(questions)
+                _anotherQuestionState.value = AnotherQuestionUIState.Disable
 
                 newQuestion.getOrNull()?.let {
                     extraQuestion = it

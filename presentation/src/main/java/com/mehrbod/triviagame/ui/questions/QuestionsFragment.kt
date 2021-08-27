@@ -1,13 +1,13 @@
 package com.mehrbod.triviagame.ui.questions
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
@@ -16,8 +16,7 @@ import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.TextQuestion
 import com.mehrbod.triviagame.R
 import com.mehrbod.triviagame.databinding.QuestionsFragmentBinding
-import com.mehrbod.triviagame.ui.questions.state.QuestionsUIState
-import com.mehrbod.triviagame.ui.questions.state.TimerState
+import com.mehrbod.triviagame.ui.questions.state.*
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -49,6 +48,7 @@ class QuestionsFragment : Fragment() {
         initQuestionStateObserver()
         initTimeStateObserver()
         initAbilitiesClickListeners()
+        initAbilitiesObservers()
     }
 
     private fun initQuestionStateObserver() {
@@ -63,6 +63,41 @@ class QuestionsFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.timerState.collect { handleTimerState(it) }
+            }
+        }
+    }
+
+    private fun initAbilitiesObservers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.extraTimeState.collect {
+                    when (it) {
+                        ExtraTimeUIState.Disable -> binding.timeAbility.isEnabled = false
+                        ExtraTimeUIState.Enable -> binding.timeAbility.isEnabled = true
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.removeAnswerState.collect {
+                    when (it) {
+                        RemoveAnswersUIState.Disable -> binding.removeAbility.isEnabled = false
+                        RemoveAnswersUIState.Enable -> binding.removeAbility.isEnabled = true
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.anotherQuestionState.collect {
+                    when (it) {
+                        AnotherQuestionUIState.Disable -> binding.anotherAbility.isEnabled = false
+                        AnotherQuestionUIState.Enable -> binding.anotherAbility.isEnabled = true
+                    }
+                }
             }
         }
     }
