@@ -59,8 +59,6 @@ class QuestionsViewModel @Inject constructor(
             questions.getOrNull()?.let {
                 this@QuestionsViewModel.questions = it
                 handleCurrentQuestions()
-            } ?: run {
-
             }
         }
     }
