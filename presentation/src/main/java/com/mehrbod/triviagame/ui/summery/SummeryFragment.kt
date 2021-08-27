@@ -9,8 +9,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.mehrbod.domain.model.summery.Summery
+import com.mehrbod.triviagame.R
 import com.mehrbod.triviagame.databinding.SummeryFragmentBinding
+import com.mehrbod.triviagame.ui.summery.state.SummeryUIEvent
 import com.mehrbod.triviagame.ui.summery.state.SummeryUIState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -37,6 +40,8 @@ class SummeryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(SummeryViewModel::class.java)
 
         initStateObserver()
+        initEventObserver()
+        initClickListener()
     }
 
     private fun initStateObserver() {
@@ -44,12 +49,29 @@ class SummeryFragment : Fragment() {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.uiState.collect {
                     when (it) {
-                        SummeryUIState.Empty -> { }
+                        SummeryUIState.Empty -> {
+                        }
                         is SummeryUIState.ShowSummery -> showSummery(it.summery)
                     }
                 }
             }
         }
+    }
+
+    private fun initEventObserver() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.uiEvent.collect {
+                    when (it) {
+                        SummeryUIEvent.NavigateToStartScreen -> findNavController().navigate(R.id.action_summeryFragment_to_startTriviaFragment)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initClickListener() = with(binding) {
+        replayButton.setOnClickListener { viewModel.onReplayClicked() }
     }
 
     private fun showSummery(summery: Summery) = with(binding) {

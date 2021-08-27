@@ -53,5 +53,15 @@
         android:id="@+id/summeryFragment"
         android:name="com.mehrbod.triviagame.ui.summery.SummeryFragment"
         android:label="summery_fragment"
-        tools:layout="@layout/summery_fragment" />
+        tools:layout="@layout/summery_fragment" >
+        <action
+            android:id="@+id/action_summeryFragment_to_startTriviaFragment"
+            app:destination="@id/startTriviaFragment"
+            app:enterAnim="@anim/enter_from_down"
+            app:exitAnim="@anim/exit_to_down"
+            app:popEnterAnim="@anim/enter_from_down"
+            app:popExitAnim="@anim/exit_to_down"
+            app:popUpTo="@id/startTriviaFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>
