@@ -23,6 +23,9 @@ internal class SessionInfoLocalDataSourceImpl @Inject constructor(): SessionInfo
 
     override fun clear() {
         answeredQuestions.clear()
+        isUserUsedExtraQuestion = false
+        isUserUsedRemoveWrongAnswers = false
+        isUserUsedExtraTime = false
     }
 
     override fun setUserUsedExtraQuestion(isUserUsedExtraQuestion: Boolean) {
