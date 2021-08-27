@@ -54,6 +54,7 @@ class QuestionsViewModel @Inject constructor(
     private var isTimeAbilityChosen = false
     private var isAnotherQuestionAbilityChosen = false
     private var extraQuestion: Question? = null
+    private var choice: Choice? = null
 
     init {
         viewModelScope.launch {
@@ -140,15 +141,17 @@ class QuestionsViewModel @Inject constructor(
     }
 
     private fun goToNextQuestion() {
-        currentQuestionIndex++
-        handleCurrentQuestions()
+        questions?.let { questions ->
+            addUserAnswerUseCase.addAnswer(questions[currentQuestionIndex], choice)
+            choice = null
+            currentQuestionIndex++
+            handleCurrentQuestions()
+        }
     }
 
     fun onChoiceClicked(choice: Choice) {
-        questions?.let { questions ->
-            addUserAnswerUseCase.addAnswer(questions[currentQuestionIndex], choice)
-            timerJob?.cancel()
-        }
+        this.choice = choice
+        timerJob?.cancel()
     }
 
     fun onTimeAbilityClicked() {

@@ -13,7 +13,7 @@ class FinishSessionUseCaseImpl @Inject constructor(
         gameSessionRepository.clear()
 
         val correctAnswers = result.count { it.first.choices.find { question -> question.isCorrect } == it.second }
-        val incorrectAnswers = result.count { it.first.choices.find { question -> !question.isCorrect } == it.second }
+        val incorrectAnswers = result.filter { it.second != null && !it.second!!.isCorrect }.size
 
         return Summery(
             correctAnswers,
