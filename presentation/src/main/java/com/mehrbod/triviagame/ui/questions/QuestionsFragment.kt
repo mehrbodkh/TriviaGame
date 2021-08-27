@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.TextQuestion
+import com.mehrbod.triviagame.R
 import com.mehrbod.triviagame.databinding.QuestionsFragmentBinding
 import com.mehrbod.triviagame.ui.questions.state.QuestionsUIState
 import com.mehrbod.triviagame.ui.questions.state.TimerState
@@ -104,6 +107,14 @@ class QuestionsFragment : Fragment() {
 
     private fun showErrorState(message: String) {
         hideLoading()
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.design_default_color_error
+                )
+            )
+            .show()
     }
 
     private fun showPhotoQuestion(question: PhotoQuestion) = with(binding) {
