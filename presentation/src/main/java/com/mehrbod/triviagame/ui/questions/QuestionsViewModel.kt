@@ -2,10 +2,7 @@ package com.mehrbod.triviagame.ui.questions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mehrbod.domain.interactor.AddExtraTimeUseCase
-import com.mehrbod.domain.interactor.AddUserAnswerUseCase
-import com.mehrbod.domain.interactor.GetQuestionsUseCase
-import com.mehrbod.domain.interactor.RemoveWrongAnswersUseCase
+import com.mehrbod.domain.interactor.*
 import com.mehrbod.domain.model.question.Choice
 import com.mehrbod.domain.model.question.PhotoQuestion
 import com.mehrbod.domain.model.question.Question
@@ -27,7 +24,8 @@ class QuestionsViewModel @Inject constructor(
     private val getQuestionsUseCase: GetQuestionsUseCase,
     private val addUserAnswerUseCase: AddUserAnswerUseCase,
     private val addExtraTimeUseCase: AddExtraTimeUseCase,
-    private val removeWrongAnswersUseCase: RemoveWrongAnswersUseCase
+    private val removeWrongAnswersUseCase: RemoveWrongAnswersUseCase,
+    private val getExtraQuestionUseCase: GetExtraQuestionUseCase
 ) : ViewModel() {
 
     private val _questionsUiState = MutableStateFlow<QuestionsUIState>(QuestionsUIState.Loading)
@@ -41,6 +39,8 @@ class QuestionsViewModel @Inject constructor(
     private var currentQuestionIndex = 0
 
     private var isTimeAbilityChosen = false
+    private var isAnotherQuestionAbilityChosen = false
+    private var extraQuestion: Question? = null
 
     init {
         viewModelScope.launch {
@@ -80,12 +80,16 @@ class QuestionsViewModel @Inject constructor(
 
     private fun handleQuestionJobCompleted() {
         if (timerJob?.isCancelled == true) {
-            if (isTimeAbilityChosen) {
-                handleExtraTimeAbility()
-            } else if (false) {
-
-            } else {
-                goToNextQuestion()
+            when {
+                isTimeAbilityChosen -> {
+                    handleExtraTimeAbility()
+                }
+                isAnotherQuestionAbilityChosen -> {
+                    handleAnotherQuestionAbility()
+                }
+                else -> {
+                    goToNextQuestion()
+                }
             }
 
         } else {
@@ -106,6 +110,19 @@ class QuestionsViewModel @Inject constructor(
                 handleQuestionJobCompleted()
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun handleAnotherQuestionAbility() {
+        isAnotherQuestionAbilityChosen = false
+
+        val newQuestions = questions?.toMutableList()
+        extraQuestion?.let { extraQuestion ->
+            newQuestions?.removeAt(currentQuestionIndex)
+            newQuestions?.add(currentQuestionIndex, extraQuestion)
+            questions = newQuestions
+        }
+
+        handleCurrentQuestions()
     }
 
     private fun goToNextQuestion() {
@@ -142,7 +159,17 @@ class QuestionsViewModel @Inject constructor(
     }
 
     fun onAnotherQuestionAbilityClicked() {
+        viewModelScope.launch {
+            questions?.let { questions ->
+                val newQuestion = getExtraQuestionUseCase.getExtraQuestion(questions)
 
+                newQuestion.getOrNull()?.let {
+                    extraQuestion = it
+                    isAnotherQuestionAbilityChosen = true
+                    timerJob?.cancel()
+                }
+            }
+        }
     }
 
 }
