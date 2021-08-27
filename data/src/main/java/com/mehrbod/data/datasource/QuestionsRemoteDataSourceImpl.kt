@@ -72,7 +72,7 @@ internal class QuestionsRemoteDataSourceImpl @Inject constructor(): QuestionsRem
                         Choice("1", false),
                         Choice("2", false),
                         Choice("15", false),
-                        Choice("9", true)
+                        Choice("10", true)
                     )
                 )
             )
