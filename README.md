@@ -9,7 +9,6 @@ This project has been fully written in Kotlin with the use of following librarie
 - Coroutines
 - MockK
 - Room
-- Mapbox
 - Gson
 
 ## Architecture
